@@ -1,13 +1,9 @@
-import Head from "next/head";
+import ConverterForm from "components/ConverterForm";
 
 export default function Home() {
   return (
-    <div className="p-2">
-      <Head>
-        <title>Neptune Mutual</title>
-        <meta name="description" content="React test excercise" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="flex items-center justify-center flex-1 p-4 md:p-6">
+        <ConverterForm />
     </div>
   );
 }

@@ -5,7 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        primaryHover: "linear-gradient(90deg,#4e7dd9,#5358d8,#5358d8)",
+      },
+      translate: {
+        "50%": "-50%",
+      },
+    },
   },
   plugins: [],
 };
