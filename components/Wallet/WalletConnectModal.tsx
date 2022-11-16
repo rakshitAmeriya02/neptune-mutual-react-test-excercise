@@ -1,4 +1,6 @@
+import { useWeb3React } from "@web3-react/core";
 import { Button, Modal } from "components/shared";
+import { connectorsByName } from "connectors";
 
 interface Props {
   open: boolean;
@@ -6,7 +8,17 @@ interface Props {
 }
 
 export const WalletConnectModal = ({ open, onClose }: Props) => {
-  const handleConnect = () => {};
+  const { activate, deactivate } = useWeb3React();
+
+  const handleConnect = async () => {
+    if (activate) {
+      await activate(connectorsByName.Injected);
+    } else {
+      deactivate();
+    }
+    onClose();
+  };
+
   return (
     <Modal modalId="wallect-connect-modal" open={open} onClose={onClose}>
       <div className="p-4 text-center bg-white rounded-lg">

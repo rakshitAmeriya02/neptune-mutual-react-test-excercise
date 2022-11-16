@@ -1,3 +1,5 @@
+import { Web3ReactProvider } from "@web3-react/core";
+import { getLibrary } from "connectors";
 import HeaderBar from "./Header";
 
 interface Props {
@@ -6,10 +8,12 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="flex flex-col flex-1">
-      <HeaderBar />
-      {children}
-    </div>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <div className="flex flex-col flex-1">
+        <HeaderBar />
+        {children}
+      </div>
+    </Web3ReactProvider>
   );
 };
 

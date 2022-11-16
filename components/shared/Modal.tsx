@@ -53,7 +53,7 @@ const Modal: React.FC<Props> = ({
         onClick={onClose}
         className="z-50 w-full h-full bg-black opacity-50"
       ></div>
-      <div className="absolute translate-y-50% top-1/2 left-1/2 translate-x-50% w-full max-w-lg">
+      <div className="absolute translate-y-50% top-1/2 left-1/2 translate-x-50% w-full max-w-lg px-2 sm: px-auto">
         {children}
       </div>
     </div>,
