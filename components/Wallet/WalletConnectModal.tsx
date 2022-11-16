@@ -24,7 +24,8 @@ export const WalletConnectModal = ({ open, onClose }: Props) => {
       <div className="p-4 text-center bg-white rounded-lg">
         <h3 className="text-xl font-bold text-start">Wallet Connect</h3>
         <p className="my-4 text-lg text-gray-500">
-          Wallet not connected. Please click the "Connect" button below.
+          Wallet not connected. Please click the &quot;Connect&quot; button
+          below.
         </p>
         <div className="grid grid-flow-col grid-rows-1 gap-4">
           <Button onClick={handleConnect}>Connect</Button>

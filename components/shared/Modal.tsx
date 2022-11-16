@@ -1,5 +1,4 @@
-import dynamic from "next/dynamic";
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 interface Props {
@@ -19,12 +18,12 @@ const Modal: React.FC<Props> = ({
 }) => {
   const [node] = useState(() => document.createElement("div"));
 
-  const removeNode = () => {
+  const removeNode = useCallback(() => {
     const ele = document.getElementById(modalId);
     if (ele) {
       ele.remove();
     }
-  };
+  }, [modalId]);
 
   useEffect(() => {
     if (node) {
@@ -41,7 +40,7 @@ const Modal: React.FC<Props> = ({
       }
     }
     return () => removeNode();
-  }, [node, open]);
+  }, [node, open, modalId, removeNode]);
 
   if (!node) return <React.Fragment></React.Fragment>;
 
