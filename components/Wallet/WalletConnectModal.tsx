@@ -1,6 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import { Button, Modal, ShouldRender } from "components/shared";
 import { connectorsByName, getErrorMessage } from "connectors";
+import { UnsupportedChainIdError } from "@web3-react/core";
 import { useMemo } from "react";
 
 interface Props {
@@ -9,14 +10,23 @@ interface Props {
 }
 
 export const WalletConnectModal = ({ open, onClose }: Props) => {
-  const { activate, error } = useWeb3React();
+  const { activate, deactivate, error } = useWeb3React();
   const errorMessage = useMemo(() => {
     if (error) return getErrorMessage(error);
     return "";
   }, [error]);
 
+  const isValidNetwork = useMemo(() => {
+    return !(error instanceof UnsupportedChainIdError);
+  }, [error]);
+
   const handleConnect = async () => {
     await activate(connectorsByName.Injected);
+    onClose();
+  };
+
+  const handleDisconnect = () => {
+    deactivate();
     onClose();
   };
 
@@ -34,12 +44,17 @@ export const WalletConnectModal = ({ open, onClose }: Props) => {
           <p className="my-4 text-lg text-red-500">{errorMessage}</p>
         </ShouldRender>
         <div className="grid grid-flow-col grid-rows-1 gap-4">
-          <Button disabled={Boolean(errorMessage)} onClick={handleConnect}>
-            Connect
-          </Button>
-          <Button onClick={onClose} variant="outlined">
-            Cancel
-          </Button>
+          <ShouldRender check={isValidNetwork}>
+            <Button disabled={Boolean(errorMessage)} onClick={handleConnect}>
+              Connect
+            </Button>
+            <Button onClick={onClose} variant="outlined">
+              Cancel
+            </Button>
+          </ShouldRender>
+          <ShouldRender check={!isValidNetwork}>
+            <Button onClick={handleDisconnect}>Switch Network</Button>
+          </ShouldRender>
         </div>
       </div>
     </Modal>
