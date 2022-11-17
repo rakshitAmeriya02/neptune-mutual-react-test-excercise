@@ -28,6 +28,8 @@ export const Button: React.FC<Props> = ({
           "bg-transparent text-black font-semibold hover:text-white border-2 border-black hover:border-transparent hover:bg-primaryHover",
         variant === "danger" &&
           "font-bold text-white bg-red-700 hover:bg-red-500",
+        disabled &&
+          "bg-gray-500 hover:bg-gray-500 hover:bg-none cursor-not-allowed",
         className
       )}
       disabled={disabled}

@@ -15,7 +15,7 @@ const HeaderBar = () => {
   useInactiveListener(!triedEager);
 
   return (
-    <div className="flex justify-between p-4 md:p-6 border-b border-b-[#b0c4db] items-center">
+    <div className="flex items-center justify-between p-4 border-b md:p-6 border-b-borderGray">
       <div className="w-[12rem] md:w-[16rem]">
         <Image src={NeptuneMutualLogo} alt="Neptune Mutual Logo" priority />
       </div>

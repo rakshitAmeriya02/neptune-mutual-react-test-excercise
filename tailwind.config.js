@@ -12,6 +12,9 @@ module.exports = {
       translate: {
         "50%": "-50%",
       },
+      colors: {
+        borderGray: "#b0c4db",
+      },
     },
   },
   plugins: [],

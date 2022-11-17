@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
-import { Button } from "../shared";
+import { Button, ShouldRender } from "../shared";
 import { MetamaskIcon } from "assets";
 import { WalletConnectModal } from "./WalletConnectModal";
 import { WalletDetailsModal } from "./WalletDetailsModal";
@@ -34,11 +34,12 @@ const WalletConnect = ({ loading }: Props) => {
         </div>
         <p className="text-xs sm:text-base">{buttonText}</p>
       </Button>
-      {account ? (
+      <ShouldRender check={account}>
         <WalletDetailsModal open={show} onClose={handleClose} />
-      ) : (
+      </ShouldRender>
+      <ShouldRender check={!account}>
         <WalletConnectModal open={show} onClose={handleClose} />
-      )}
+      </ShouldRender>
     </React.Fragment>
   );
 };
